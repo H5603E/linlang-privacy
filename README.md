@@ -1,0 +1,2 @@
+# linlang-privacy
+Privacy policy
