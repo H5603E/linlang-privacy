@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>琳琅全域</title>
+  <link rel="stylesheet" href="popup-styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="icon">
+        <img src="icon/icon.png" alt="琳琅全域">
+      </div>
+      <div class="title-wrap">
+        <p class="title">琳琅全域</p>
+      </div>
+      <div class="theme-switch">
+        <span>主题</span>
+        <select id="theme-select" class="theme-select">
+          <option value="system">跟随系统</option>
+          <option value="light">浅色</option>
+          <option value="dark">深色</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="tabs" id="tabs-bar">
+      <div class="primary-tabs" id="primary-tabs"></div>
+      <div class="more-wrap" id="more-wrap">
+        <button class="tab-btn more-btn" id="more-btn" type="button">
+          更多 ▾
+        </button>
+        <div class="more-menu" id="more-menu"></div>
+      </div>
+    </div>
+
+    <!-- Facebook -->
+    <div class="panel active" id="panel-facebook">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title">Facebook Cookie</p>
+          <span class="badge fb">FB</span>
+        </div>
+        <div class="uid-display" id="facebook-uid-display" style="display: none;">
+          <span class="uid-label">ID:</span>
+          <span class="uid-value" id="facebook-uid-value"></span>
+          <button class="uid-copy-btn" id="copy-facebook-uid">复制</button>
+        </div>
+        <textarea id="facebook-cookies" placeholder="支持 c_user=...;xs=...; 或 JSON 数组 [{name,value,...}]"></textarea>
+        <div class="security-warning">
+          <div class="warning-text">
+            <strong>安全提示：</strong>登录 Cookie 可访问你的账号。请勿分享给不信任的人或组织。
+          </div>
+        </div>
+        <div class="button-group fb-actions">
+          <button class="btn-primary" id="login-facebook">登录</button>
+          <button class="btn-primary" id="login-facebook-4">Login 4D</button>
+          <button class="btn-danger" id="clear-facebook">清除</button>
+          <button class="btn-success" id="copy-facebook">复制</button>
+          <button class="btn-ghost" id="save-facebook">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instagram -->
+    <div class="panel" id="panel-instagram">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title">Instagram Cookie</p>
+          <span class="badge ig">IG</span>
+        </div>
+        <textarea id="instagram-cookies" placeholder="支持 ds_user_id=...;sessionid=...; 或 JSON 数组 [{name,value,...}]"></textarea>
+        <div class="security-warning">
+          <div class="warning-text">
+            <strong>安全提示：</strong>登录 Cookie 可访问你的账号。请勿分享给不信任的人或组织。
+          </div>
+        </div>
+        <div class="button-group ig-actions">
+          <button class="btn-ig" id="login-instagram">登录</button>
+          <button class="btn-danger" id="clear-instagram">清除</button>
+          <button class="btn-success" id="copy-instagram">复制</button>
+          <button class="btn-ghost" id="save-instagram">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Meta -->
+    <div class="panel" id="panel-meta">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title">Meta Cookie</p>
+          <span class="badge" style="background: #0ea5e9;">META</span>
+        </div>
+        <textarea id="meta-cookies" placeholder="支持分号串或 JSON 数组 [{name,value,...}]"></textarea>
+        <div class="security-warning">
+          <div class="warning-text">
+            <strong>安全提示：</strong>登录 Cookie 可访问你的账号。请勿分享给不信任的人或组织。
+          </div>
+        </div>
+        <div class="button-group ig-actions">
+          <button class="btn-primary" id="login-meta">登录</button>
+          <button class="btn-danger" id="clear-meta">清除</button>
+          <button class="btn-success" id="copy-meta">复制</button>
+          <button class="btn-ghost" id="save-meta">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Threads -->
+    <div class="panel" id="panel-threads">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title">Threads Cookie</p>
+          <span class="badge" style="background: #111;">TH</span>
+        </div>
+        <textarea id="threads-cookies" placeholder="支持分号串或 JSON 数组 [{name,value,...}]"></textarea>
+        <div class="security-warning">
+          <div class="warning-text">
+            <strong>安全提示：</strong>登录 Cookie 可访问你的账号。请勿分享给不信任的人或组织。
+          </div>
+        </div>
+        <div class="button-group ig-actions">
+          <button class="btn-primary" id="login-threads">登录</button>
+          <button class="btn-danger" id="clear-threads">清除</button>
+          <button class="btn-success" id="copy-threads">复制</button>
+          <button class="btn-ghost" id="save-threads">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- iCloud -->
+    <div class="panel" id="panel-icloud">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title">iCloud Cookie</p>
+          <span class="badge" style="background: #007aff;">iC</span>
+        </div>
+        <textarea id="icloud-cookies" placeholder="全量 Cookie：分号串或 JSON 数组均可"></textarea>
+        <div class="security-warning">
+          <div class="warning-text">
+            <strong>安全提示：</strong>iCloud 使用全量 Cookie。请勿分享给不信任的人或组织。
+          </div>
+        </div>
+        <div class="button-group ig-actions">
+          <button class="btn-primary" id="login-icloud">登录</button>
+          <button class="btn-danger" id="clear-icloud">清除</button>
+          <button class="btn-success" id="copy-icloud">复制</button>
+          <button class="btn-ghost" id="save-icloud">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gmail -->
+    <div class="panel" id="panel-gmail">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title">Gmail Cookie</p>
+          <span class="badge" style="background: #ea4335;">G</span>
+        </div>
+        <textarea id="gmail-cookies" placeholder="全量 Cookie：分号串或 JSON 数组均可"></textarea>
+        <div class="security-warning">
+          <div class="warning-text">
+            <strong>安全提示：</strong>Gmail 使用全量 Cookie，可能影响其它 Google 登录态。请勿分享给不信任的人或组织。
+          </div>
+        </div>
+        <div class="button-group ig-actions">
+          <button class="btn-primary" id="login-gmail">登录</button>
+          <button class="btn-danger" id="clear-gmail">清除</button>
+          <button class="btn-success" id="copy-gmail">复制</button>
+          <button class="btn-ghost" id="save-gmail">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- X / Twitter -->
+    <div class="panel" id="panel-x">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title">X Token / Cookie</p>
+          <span class="badge" style="background: #000;">X</span>
+        </div>
+        <textarea id="x-cookies" placeholder="粘贴 auth_token，或分号串 / JSON 数组；登录后跳转 x.com"></textarea>
+        <div class="security-warning">
+          <div class="warning-text">
+            <strong>安全提示：</strong>X Token 等同账号登录态。请勿分享给不信任的人或组织。
+          </div>
+        </div>
+        <div class="button-group ig-actions">
+          <button class="btn-primary" id="login-x">登录</button>
+          <button class="btn-danger" id="clear-x">清除</button>
+          <button class="btn-success" id="copy-x">复制</button>
+          <button class="btn-ghost" id="save-x">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="panel" id="panel-settings">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title">主栏平台设置</p>
+          <span class="badge" style="background: #6366f1;">SET</span>
+        </div>
+        <div class="privacy-notice">
+          <span>勾选并排序最多 4 个平台显示在主栏；未选中的会进入「更多」。Manager / 设置固定在更多里。</span>
+        </div>
+        <div id="settings-primary-list" class="settings-list"></div>
+        <div class="button-group ig-actions" style="margin-top: 12px;">
+          <button class="btn-primary" id="settings-save">保存</button>
+          <button class="btn-ghost" id="settings-reset">恢复默认</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manager -->
+    <div class="panel" id="panel-manager">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title">Cookie Manager</p>
+          <div class="manager-tools">
+            <button class="btn-success" id="export-cookies">导出</button>
+            <button class="btn-ghost" id="import-cookies">导入</button>
+            <input type="file" id="import-file" accept="application/json,.json" hidden>
+          </div>
+        </div>
+        <div class="privacy-notice">
+          <span>Cookie 仅保存在本机浏览器，不会自动上传到服务器。</span>
+        </div>
+        <div id="saved-cookies-list">
+          <div class="empty-state">暂无已保存的 Cookie</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>琳琅全域</span>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="duplicate-modal">
+    <div class="modal-dialog">
+      <div class="modal-title" id="modal-title">ID 已存在</div>
+      <div class="modal-message" id="modal-message">该 ID 已存在！<br>你想怎么处理？</div>
+      <div class="modal-buttons">
+        <button class="modal-btn modal-btn-success" id="modal-new-btn">新建 [2]</button>
+        <button class="modal-btn modal-btn-primary" id="modal-overwrite-btn">覆盖</button>
+        <button class="modal-btn modal-btn-cancel" id="modal-cancel-btn">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="rename-modal">
+    <div class="modal-dialog">
+      <div class="modal-title" id="rename-modal-title">重命名</div>
+      <div class="modal-message" id="rename-modal-message">输入显示名称</div>
+      <input id="rename-input" class="modal-input" type="text" placeholder="例如：账号 01" />
+      <div class="modal-buttons" style="margin-top: 14px;">
+        <button class="modal-btn modal-btn-primary" id="rename-save-btn">保存</button>
+        <button class="modal-btn modal-btn-cancel" id="rename-cancel-btn">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/popup.js"></script>
+</body>
+
+</html>
